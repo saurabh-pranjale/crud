@@ -5,14 +5,35 @@ import { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import Modal from 'react-bootstrap/Modal';
 import Cake_Form from './components/cake-form'
+import Cake_Form_Edit from './components/cake-form-edit'
 
 function App() {
 
-
+  // ADD_Cake
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+   // ADD_Cake
+
+  //  edit
+ const [id,setId] = useState(null)
+ const [showEdit, setShowEdit] = useState(false);
+
+  const handleCloseEdit = () => setShowEdit(false);
+
+  const handleShowEdit = (id) =>{ 
+  
+    console.log(id,"!@#")
+
+     setId(id)
+    setShowEdit(true);
+  
+  }
+
+   //  edit
+
 
   const [state, setState] = useState([])
 
@@ -59,7 +80,7 @@ function App() {
         {
           state.map((c) => {
             return (
-              <Cardex key={c.id} {...c} deleteCake={deleteCake} />
+              <Cardex key={c.id} {...c} deleteCake={deleteCake} handleShowEdit={handleShowEdit} />
             )
           })
         }
@@ -79,6 +100,21 @@ function App() {
         </Modal.Header>
         <Modal.Body>
           <Cake_Form getData={getData} handleClose={handleClose} />
+        </Modal.Body>
+        
+      </Modal>
+
+
+
+      {/* Edit Modal */}
+
+
+        <Modal show={showEdit} onHide={handleCloseEdit}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Cake</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+           <Cake_Form_Edit id={id} getData={getData} handleCloseEdit={handleCloseEdit} />
         </Modal.Body>
         
       </Modal>

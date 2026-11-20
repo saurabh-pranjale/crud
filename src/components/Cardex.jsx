@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function Cardex({id,name,image,price,deleteCake}) {
+function Cardex({id,name,image,price,deleteCake,handleShowEdit}) {
 
     return (
         <Card style={{ width: '18rem' }}>
@@ -16,7 +16,7 @@ function Cardex({id,name,image,price,deleteCake}) {
                     }
                 </Card.Text>
                 <section className='mx-auto w-75  d-flex justify-content-between'>
-                    <Button variant="outline-info">Edit</Button>
+                    <Button variant="outline-info" onClick={()=>{handleShowEdit(id)}}>Edit</Button>
                     <Button variant="outline-danger" onClick={()=>{deleteCake(id)}}>Delete</Button>
                 </section>
 
